@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>ukryj więc i nas</title>
+</head>
+
+
+<body>
+    <div id="container">
+        <div id="content">
+            <img src="Swinging_opportunity.png">
+            <div id="bar">
+                <div id="about">
+                    This website presents responsive web design.
+                </div>
+                <div id="rainbow">
+                    Kącik muzyczny. Posłuchaj:
+                    <audio src="" controls id="audioPlayer">
+                        Widzisz: pusto. (Odtwarzacz audio nie jest dostępny w Twojej przeglądarce)
+                    </audio>
+                    <ul id="playlist">
+                        <li class="current-song"><a href="music/OFF - Ost - 04 Pepper Steak.mp3">Pepper Steak from OFF</a></li>
+                        <li><a href="music/We_ll Meet Again.mp3">We'll Meet Again</a></li>
+                        <li><a href="music/Wędrowcy_Tułacze_Zbiegi - Dokąd_ Na wprost_.mp3">WTZ - Dokąd? Na wprost!</a></li>
+                        <li><a href="music/Morowe - Głęboko pod ziemią.mp3">Morowe - Głęboko pod ziemią</a></li>
+                        <li><a href="music/It_s All Forgotten Now.mp3">It's All Forgotten Now</a></li>
+                        <li><a href="music/Fly me to the moon-Evangelion.mp3">Fly me to the moon</a></li>
+                        <li><a href="music/GRUZJA - Kamera Dionizosa.mp3">Gruzja - Kamera Dionizosa</a></li>
+                        <li><a href="music/Talking Heads - Once in a Lifetime _Official Video_.mp3">Once in a Lifetime</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+<style>
+html{
+    width: 100%;
+    height: 100%;
+    background-position-x: center;
+    background-image: url("spojrz.png");
+    background-repeat: repeat-y;
+    background-color: #0d0d0d;
+}
+body{
+    margin: 0;
+}
+img{
+    object-fit: cover;
+    width: 75%;
+}
+#content{
+    display: flex;
+    flex-flow: row;
+}
+
+#bar{
+    min-height: 50vw;
+    min-width: 25%;
+
+    display: flex;
+    flex-flow: column;
+}
+#about{
+    object-fit: cover;
+    width: 100%;
+
+
+    min-height: 50%;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+#rainbow{
+    object-fit: cover;
+    width: 100%;
+
+    min-height: 50%;
+    animation: infinite linear 2s rainbowColor;
+
+    display: flex;
+    flex-flow: column;
+}
+#rainbow audio{
+    max-width: 100%;
+}
+#playlist .current-song a{
+    animation: infinite linear 10s rainbowColor;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+#playlist li a{
+    color: black;
+    text-decoration: none;
+}
+
+@media screen and (orientation: portrait){
+    img{
+        width: 100vw;
+    }
+    #content{
+        flex-flow: column;
+    }
+    #bar{
+        flex-flow: row;
+    }
+}
+@keyframes rainbowColor {
+    0%   {background-color: #00ffff; }
+    25%  {background-color: #ff00ff }
+    50%  {background-color: #00ff00;}
+    75%  {background-color: #ffff00; }
+    100% {background-color: #00ffff; }
+}
+</style>
+
+
+<script>
+    var audioPlayer_elem = document.getElementById("audioPlayer");
+    var songIndex = 0;
+    const songs = document.getElementById("playlist").querySelectorAll("li");
+    
+    function playSong(index){
+        audioPlayer_elem.src = document.getElementById("playlist").querySelectorAll("li a")[index];
+        audioPlayer_elem.play();
+        songs[songIndex].className = "";
+        songIndex = index;
+        songs[songIndex].className = "current-song";
+    }
+    
+    function audioPlayer(){   
+        audioPlayer_elem.src = document.getElementById("playlist").querySelectorAll("li a")[songIndex];
+        audioPlayer_elem.play();
+
+        for (let link of document.getElementById("playlist").querySelectorAll("li a")){
+            // console.log(link);
+            link.onclick = function(e){
+                e.preventDefault();
+                var indexSelected = Array.from(songs).indexOf(this.parentNode);
+                audioPlayer_elem.src = this;
+                audioPlayer_elem.play();
+                songs[songIndex].className = "";
+                songIndex = indexSelected;
+                songs[songIndex].className = "current-song";
+            }
+        }
+    }
+
+    audioPlayer_elem.onended = function(){
+        playSong((songIndex+1) % songs.length);
+    }
+    
+    audioPlayer();
+    </script>
+
+
+</html>
