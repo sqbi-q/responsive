@@ -13,10 +13,10 @@
             <img src="Swinging_opportunity.png">
             <div id="bar">
                 <div id="about">
-                    This website presents responsive web design.
+                    <p>This website presents responsive web design.</p>
                 </div>
                 <div id="rainbow">
-                    Kącik muzyczny. Posłuchaj:
+                    <p>Kącik muzyczny. Posłuchaj:</p>
                     <audio src="" controls id="audioPlayer">
                         Widzisz: pusto. (Odtwarzacz audio nie jest dostępny w Twojej przeglądarce)
                     </audio>
@@ -54,6 +54,12 @@ body{
 img{
     object-fit: cover;
     width: 75%;
+}
+p{
+    font-size: 2vw;
+}
+ul{
+    font-size: 1vw;
 }
 #content{
     display: flex;
@@ -109,6 +115,9 @@ img{
     }
     #bar{
         flex-flow: row;
+    }
+    p, ul{
+        font-size: 3vw;
     }
 }
 @keyframes rainbowColor {
