@@ -12,6 +12,7 @@ function playSong(index){
 
 function setupAudioPlayer(){
     songs = document.getElementById("playlist").querySelectorAll("li");
+
     for (let link of document.getElementById("playlist").querySelectorAll("li a")){
         link.onclick = function(e){
             e.preventDefault();
@@ -23,4 +24,19 @@ function setupAudioPlayer(){
         playSong((songIndex+1) % songs.length);
     }
     playSong(songIndex);
+}
+
+
+
+
+function* triangle() {
+    var index = 0;
+    while(true)
+        yield index=(index+0.1) % 1;
+}
+
+var gen = triangle();
+
+function funky(){
+    audioPlayer_elem.volume = gen.next().value;
 }

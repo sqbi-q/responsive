@@ -1,12 +1,15 @@
 var searcherInput_elem = document.getElementById("searcher").getElementsByTagName("input")[0];
 var searcher_resp_elem = document.getElementById("searcher-resp");
 var about_elem = document.getElementById("about");
+var funky_interval;
 
 var secretes = {
     "amogus": function(){        
         about_elem.classList.add("amogus");
-        audioPlayer_elem.src = "./eastereggs/amogus.mp3";
-        audioPlayer_elem.play();
+        if(audioPlayer_elem.src != new URL("./eastereggs/amogus.mp3", document.baseURI).href){
+            audioPlayer_elem.src = "./eastereggs/amogus.mp3";
+            audioPlayer_elem.play();
+        }
     },
     "bydgocz": function(){
         about_elem.classList.add("bydgocz");
@@ -17,7 +20,7 @@ var secretes = {
     "gruzja": function(){
         var gruzja_playlist = 
         `
-            <li class="current-song"><a href="music/Gruzja_Playlist/800 Zł.mp3">800 Zł</a></li>
+            <li><a href="music/Gruzja_Playlist/800 Zł.mp3">800 Zł</a></li>
             <li><a href="music/Gruzja_Playlist/Grues.mp3">Grues</a></li>
             <li><a href="music/Gruzja_Playlist/Jeszcze nie mamy na was pomysłu III.mp3">Jeszcze nie mamy na was pomysłu III</a></li>
             <li><a href="music/Gruzja_Playlist/Jeszcze nie mamy na was pomysłu II.mp3">Jeszcze nie mamy na was pomysłu II</a></li>
@@ -30,6 +33,33 @@ var secretes = {
         document.getElementById("playlist").innerHTML = gruzja_playlist;
         document.getElementById("rainbow").classList.add("gruzja");
         setupAudioPlayer();
+    },
+    "funky": function(){
+        funky_interval = setInterval(function(){ 
+            funky(); 
+        }, 20);
+    },
+    "catboy": function(){
+        about_elem.classList.add("catboy");
+        
+        if (audioPlayer_elem.src != new URL("./eastereggs/Trololo_Song.mp3", document.baseURI).href){
+            audioPlayer_elem.src = "./eastereggs/Trololo_Song.mp3";
+            audioPlayer_elem.play();  
+        }
+    },
+    "spooky": function(){
+        about_elem.classList.add("spooky");
+
+        if (audioPlayer_elem.src != new URL("./eastereggs/Spookeez - Friday Night Funkin_ OST.mp3", document.baseURI).href){
+            audioPlayer_elem.src = "./eastereggs/Spookeez - Friday Night Funkin_ OST.mp3";
+            audioPlayer_elem.play();  
+        }
+    },
+    "sayonara": function(){
+        if(audioPlayer_elem.src != new URL("./eastereggs/Artemisia - S A Y O N A R A _DDLC LoFi Remix_.mp3", document.baseURI).href){
+            audioPlayer_elem.src = "./eastereggs/Artemisia - S A Y O N A R A _DDLC LoFi Remix_.mp3";
+            audioPlayer_elem.play();
+        }
     }
 };
 
@@ -43,6 +73,7 @@ function oninput_searcher(){
                 secretes[secret_key]();
             }else{
                 about_elem.className = "";
+                clearInterval(funky_interval);
             }
         }
     }
