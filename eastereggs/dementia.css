@@ -5,9 +5,6 @@
 #rainbow.fade, #searcher.fade, #bar.fade {
     opacity: 0;
 }
-#rainbow:hover, #searcher:hover{
-    opacity: 0.05;
-}
 #logo {
     filter: sepia(0%);
     transform: scale3d(1,1,1);
