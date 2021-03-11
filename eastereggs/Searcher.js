@@ -3,13 +3,19 @@ var searcher_resp_elem = document.getElementById("searcher-resp");
 var about_elem = document.getElementById("about");
 var funky_interval;
 
+function changeMusicSrc(path){
+    if(audioPlayer_elem.src != new URL(path, document.baseURI).href){
+        audioPlayer_elem.src = path;
+        return true;
+    }
+    return false;
+}
+
 var secretes = {
     "amogus": function(){        
         about_elem.classList.add("amogus");
-        if(audioPlayer_elem.src != new URL("./eastereggs/amogus.mp3", document.baseURI).href){
-            audioPlayer_elem.src = "./eastereggs/amogus.mp3";
+        if (changeMusicSrc("./eastereggs/amogus.mp3"))
             audioPlayer_elem.play();
-        }
     },
     "bydgocz": function(){
         about_elem.classList.add("bydgocz");
@@ -41,25 +47,17 @@ var secretes = {
     },
     "catboy": function(){
         about_elem.classList.add("catboy");
-        
-        if (audioPlayer_elem.src != new URL("./eastereggs/Trololo_Song.mp3", document.baseURI).href){
-            audioPlayer_elem.src = "./eastereggs/Trololo_Song.mp3";
-            audioPlayer_elem.play();  
-        }
+        if (changeMusicSrc("./eastereggs/Trololo_Song.mp3"))
+            audioPlayer_elem.play();
     },
     "spooky": function(){
         about_elem.classList.add("spooky");
-
-        if (audioPlayer_elem.src != new URL("./eastereggs/Spookeez - Friday Night Funkin_ OST.mp3", document.baseURI).href){
-            audioPlayer_elem.src = "./eastereggs/Spookeez - Friday Night Funkin_ OST.mp3";
+        if (changeMusicSrc("./eastereggs/Spookeez - Friday Night Funkin_ OST.mp3"))
             audioPlayer_elem.play();  
-        }
     },
     "sayonara": function(){
-        if(audioPlayer_elem.src != new URL("./eastereggs/Artemisia - S A Y O N A R A _DDLC LoFi Remix_.mp3", document.baseURI).href){
-            audioPlayer_elem.src = "./eastereggs/Artemisia - S A Y O N A R A _DDLC LoFi Remix_.mp3";
+        if (changeMusicSrc("./eastereggs/Artemisia - S A Y O N A R A _DDLC LoFi Remix_.mp3"))
             audioPlayer_elem.play();
-        }
     }
 };
 

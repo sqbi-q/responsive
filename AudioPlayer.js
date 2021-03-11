@@ -29,14 +29,12 @@ function setupAudioPlayer(){
 
 
 
-function* triangle() {
+function* sawwave() {
     var index = 0;
     while(true)
         yield index=(index+0.1) % 1;
 }
-
-var gen = triangle();
-
+var savwave_gen = sawwave();
 function funky(){
-    audioPlayer_elem.volume = gen.next().value;
+    audioPlayer_elem.volume = savwave_gen.next().value;
 }
