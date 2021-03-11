@@ -3,20 +3,26 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" type="image/png" href="/favicon.png"/>
     <title>ukryj więc i nas</title>
 </head>
 
 
-<body>
+<body onload="setupAudioPlayer();oninput_searcher();">
     <div id="container">
         <div id="content">
             <img src="Swinging_opportunity.png">
             <div id="bar">
                 <div id="about">
-                    This website presents responsive web design.
+                    <p>This website presents responsive web design.</p>
+                    <div id="searcher">
+                        <p>Search for secrets and easter eggs:</p>
+                        <input oninput="oninput_searcher();">
+                        <p id="searcher-resp">Respone: 0</p>
+                    </div>
                 </div>
                 <div id="rainbow">
-                    Kącik muzyczny. Posłuchaj:
+                    <p>Kącik muzyczny. Posłuchaj:</p>
                     <audio src="" controls id="audioPlayer">
                         Widzisz: pusto. (Odtwarzacz audio nie jest dostępny w Twojej przeglądarce)
                     </audio>
@@ -40,124 +46,126 @@
 
 
 <style>
-html{
-    width: 100%;
-    height: 100%;
-    background-position-x: center;
-    background-image: url("spojrz.png");
-    background-repeat: repeat-y;
-    background-color: #0d0d0d;
-}
-body{
-    margin: 0;
-}
-img{
-    object-fit: cover;
-    width: 75%;
-}
-#content{
-    display: flex;
-    flex-flow: row;
-}
-
-#bar{
-    min-height: 50vw;
-    min-width: 25%;
-
-    display: flex;
-    flex-flow: column;
-}
-#about{
-    object-fit: cover;
-    width: 100%;
-
-
-    min-height: 50%;
-    text-align: center;
-    background-color: black;
-    color: white;
-}
-#rainbow{
-    object-fit: cover;
-    width: 100%;
-
-    min-height: 50%;
-    animation: infinite linear 2s rainbowColor;
-
-    display: flex;
-    flex-flow: column;
-}
-#rainbow audio{
-    max-width: 100%;
-}
-#playlist .current-song a{
-    animation: infinite linear 10s rainbowColor;
-    -webkit-filter: invert(100%);
-    filter: invert(100%);
-}
-#playlist li a{
-    color: black;
-    text-decoration: none;
-}
-
-@media screen and (orientation: portrait){
+    html{
+        width: 100%;
+        height: 100%;
+        background-position-x: center;
+        background-image: url("spojrz.png");
+        background-repeat: repeat-y;
+        background-color: #0d0d0d;
+    }
+    body{
+        margin: 0;
+    }
     img{
-        width: 100vw;
+        object-fit: cover;
+        width: 75%;
+    }
+    p{
+        font-size: 2vw;
+    }
+    #secretsearcher p, ul{
+        font-size: 1vw;
     }
     #content{
-        flex-flow: column;
-    }
-    #bar{
+        display: flex;
         flex-flow: row;
     }
+    
+    #bar{
+        min-height: 50vw;
+        min-width: 25%;
+    
+        display: flex;
+        flex-flow: column;
+    }
+    #about{
+        object-fit: cover;
+        width: 100%;
+        min-height: 50%;
+        text-align: center;
+        background-color: black;
+        color: white;
+    }
+    #about p{
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    #rainbow{
+        object-fit: cover;
+        width: 100%;
+    
+        min-height: 50%;
+        animation: infinite linear 2s rainbowColor;
+    
+        display: flex;
+        flex-flow: column;
+    }
+    #rainbow audio{
+        max-width: 100%;
+    }
+    #playlist .current-song a{
+        animation: infinite linear 10s rainbowColor;
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+    }
+    #playlist li a{
+        color: black;
+        text-decoration: none;
+    }
+    
+    @media screen and (orientation: portrait){
+        img{
+            width: 100vw;
+        }
+        #content{
+            flex-flow: column;
+        }
+        #bar{
+            flex-flow: row;
+        }
+        #secretsearcher p, p, ul{
+            font-size: 3vw;
+        }
+    }
+    @keyframes rainbowColor {
+        0%   {background-color: #00ffff; }
+        25%  {background-color: #ff00ff }
+        50%  {background-color: #00ff00;}
+        75%  {background-color: #ffff00; }
+        100% {background-color: #00ffff; }
+    }
+</style>
+
+<style>
+.amogus{
+    background-image: url("eastereggs/amogus.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
 }
-@keyframes rainbowColor {
-    0%   {background-color: #00ffff; }
-    25%  {background-color: #ff00ff }
-    50%  {background-color: #00ff00;}
-    75%  {background-color: #ffff00; }
-    100% {background-color: #00ffff; }
+.bydgocz{
+    background-image: url("eastereggs/bydgocz.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.bydgocz p{
+    opacity: 0%;
+}
+.morshu{
+    background-image: url("eastereggs/morshu.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.gruzja{
+    background-image: url("music/Gruzja_Playlist/gruzja_album.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 </style>
 
 
-<script>
-    var audioPlayer_elem = document.getElementById("audioPlayer");
-    var songIndex = 0;
-    const songs = document.getElementById("playlist").querySelectorAll("li");
-    
-    function playSong(index){
-        audioPlayer_elem.src = document.getElementById("playlist").querySelectorAll("li a")[index];
-        audioPlayer_elem.play();
-        songs[songIndex].className = "";
-        songIndex = index;
-        songs[songIndex].className = "current-song";
-    }
-    
-    function audioPlayer(){   
-        audioPlayer_elem.src = document.getElementById("playlist").querySelectorAll("li a")[songIndex];
-        audioPlayer_elem.play();
-
-        for (let link of document.getElementById("playlist").querySelectorAll("li a")){
-            // console.log(link);
-            link.onclick = function(e){
-                e.preventDefault();
-                var indexSelected = Array.from(songs).indexOf(this.parentNode);
-                audioPlayer_elem.src = this;
-                audioPlayer_elem.play();
-                songs[songIndex].className = "";
-                songIndex = indexSelected;
-                songs[songIndex].className = "current-song";
-            }
-        }
-    }
-
-    audioPlayer_elem.onended = function(){
-        playSong((songIndex+1) % songs.length);
-    }
-    
-    audioPlayer();
-    </script>
-
+<script type="text/javascript" src="AudioPlayer.js"></script>
+<script type="text/javascript" src="eastereggs/Searcher.js"></script>
 
 </html>
