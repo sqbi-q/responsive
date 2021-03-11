@@ -1,4 +1,4 @@
-var audioPlayer_elem = document.getElementById("audioPlayer");
+var audioPlayer_elem;
 var songIndex = 0;
 var songs;
 
@@ -11,6 +11,7 @@ function playSong(index){
 }
 
 function setupAudioPlayer(){
+    audioPlayer_elem = document.getElementById("audioPlayer");
     songs = document.getElementById("playlist").querySelectorAll("li");
 
     for (let link of document.getElementById("playlist").querySelectorAll("li a")){

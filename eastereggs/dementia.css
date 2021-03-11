@@ -1,0 +1,51 @@
+#rainbow, #searcher, #bar {
+    opacity: 1;
+    transition: opacity 20s; 
+}  
+#rainbow.fade, #searcher.fade, #bar.fade {
+    opacity: 0;
+}
+#rainbow:hover, #searcher:hover{
+    opacity: 0.05;
+}
+#logo {
+    filter: sepia(0%);
+    transform: scale3d(1,1,1);
+    transition: filter 60s ease, transform 240s ease, opacity 60s ease;
+}
+#logo.old {
+    filter: sepia(100%);
+    transform: scale3d(0, 0, 0);
+}
+#logo.fade{
+    opacity: 0;
+}
+
+#takeCare{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-height: 40%;
+    background-color: #746639;
+}
+#takeCare audio{
+    width: 100%;
+}
+#takeCare #playlist {
+    font-size: 16px;
+    display: table;
+    margin: 0 auto;
+}
+#takeCare #playlist ul{
+    list-style: none;
+}
+#takeCare #playlist ul li{
+    display: inline;
+    filter: saturate(0%);
+}
+#takeCare #playlist .current-song a {
+    background-color: #427684;
+    animation: none;
+    -webkit-filter: none;
+    filter: none;
+}

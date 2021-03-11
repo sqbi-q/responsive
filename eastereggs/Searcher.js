@@ -58,6 +58,10 @@ var secretes = {
     "sayonara": function(){
         if (changeMusicSrc("./eastereggs/Artemisia - S A Y O N A R A _DDLC LoFi Remix_.mp3"))
             audioPlayer_elem.play();
+    },
+    "caretaker": function(){
+        startDementia();
+        secretes = null;
     }
 };
 
