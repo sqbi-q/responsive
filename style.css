@@ -26,7 +26,7 @@ p{
 
 #bar{
     min-height: 50vw;
-    min-width: 25%;
+    max-width: 25%;
 
     display: flex;
     flex-flow: column;

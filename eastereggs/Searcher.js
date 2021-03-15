@@ -62,6 +62,10 @@ var secretes = {
     "caretaker": function(){
         startDementia();
         secretes = null;
+    },
+    "Hidden In the Sand": function(){
+        if (changeMusicSrc("./eastereggs/Hidden In the Sand.mp3"))
+            audioPlayer_elem.play();
     }
 };
 
